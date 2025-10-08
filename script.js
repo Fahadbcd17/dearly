@@ -1,199 +1,51 @@
-// Product data
-const products = [
+// Categories data for the main page
+const categories = [
   {
-    title: "Back-Pack 1",
-    weight: "300g",
-    approximate_price: "2400 TK",
-    image: "./assets/back-pack-1/back-pack-1(1).jpg",
-    additionalImages: generateAdditionalImages("back-pack-1", "back-pack-1", 40)
-  },
-  {
-    title: "Back-Pack 2",
-    weight: "500g",
-    discount_price: "3200 TK",
-    image: "./assets/back-pack-2/back-pack-2(1).jpg",
-    additionalImages: generateAdditionalImages("back-pack-2", "back-pack-2", 29)
-  },
-  {
-    title: "Back-Pack 3",
-    weight: "500g",
-    approximate_price: "3000 TK",
-    image: "./assets/back-pack-3/back-pack-3(1).jpg",
-    additionalImages: generateAdditionalImages("back-pack-3", "back-pack-3", 29)
-  },
-  {
-    title: "Back-Pack 4",
-    weight: "850g",
-    approximate_price: "2800 TK",
-    image: "./assets/back-pack-4/back-pack-4(1).jpg",
-    additionalImages: generateAdditionalImages("back-pack-4", "back-pack-4", 17)
-  },
-  {
-    title: "Back-Pack 5",
-    weight: "400g",
-    approximate_price: "2700 TK",
-    image: "./assets/back-pack-5/back-pack-5(1).jpg",
-    additionalImages: generateAdditionalImages("back-pack-5", "back-pack-5", 26)
-  },
+    name: "Bags",
+    description: "Premium quality bags for every occasion",
+    thumbnail: "./assets/back-pack-1/back-pack-1(1).jpg",
+    page: "bags.html"
+  }
+  // Add more categories here in the future:
+  // {
+  //   name: "Shoes",
+  //   description: "Comfortable and stylish footwear",
+  //   thumbnail: "./assets/categories/shoes-thumbnail.jpg",
+  //   page: "shoes.html"
+  // },
+  // {
+  //   name: "Accessories",
+  //   description: "Complete your look with our accessories",
+  //   thumbnail: "./assets/categories/accessories-thumbnail.jpg",
+  //   page: "accessories.html"
+  // }
 ];
 
-// Function to generate additional images using a for loop
-function generateAdditionalImages(productCode, folderName, imageCount) {
-  const images = [];
-  for (let i = 1; i <= imageCount; i++) {
-    images.push(`./assets/${folderName}/${productCode}(${i}).jpg`);
-  }
-  return images;
-}
-
 // DOM elements
-const productGrid = document.getElementById("productGrid");
-const imageModal = document.getElementById("imageModal");
-const modalImage = document.getElementById("modalImage");
-const closeModalBtn = document.getElementById("closeModalBtn");
-const modalTitle = document.getElementById("modalTitle");
-const imageCounter = document.getElementById("imageCounter");
-const prevBtn = document.getElementById("prevBtn");
-const nextBtn = document.getElementById("nextBtn");
-const thumbnailContainer = document.getElementById("thumbnailContainer");
+const categoriesGrid = document.getElementById("categoriesGrid");
 
-// Current image state
-let currentProduct = null;
-let currentImageIndex = 0;
-let currentImages = [];
-
-// Render product cards
-function renderProducts() {
-  productGrid.innerHTML = products
+// Render categories on main page
+function renderCategories() {
+  if (!categoriesGrid) return;
+  
+  categoriesGrid.innerHTML = categories
     .map(
-      (product) => `
-        <div class="product-card">
-            <div class="product-image-container">
-                <img src="${product.image}" alt="${product.title}" class="product-image">
-                <button class="view-larger-btn" data-product='${JSON.stringify(product).replace(/'/g, "&#39;")}'>
-                    <span class="view-larger-text">View Larger</span>
-                </button>
-                ${product.additionalImages && product.additionalImages.length > 0 ? 
-                  `<button class="show-more-btn" data-product='${JSON.stringify(product).replace(/'/g, "&#39;")}'>
-                    <span class="show-more-text">+${product.additionalImages.length} More</span>
-                  </button>` : ''}
-            </div>
-            <div class="product-details">
-                <h2 class="product-title">${product.title}</h2>
-                <div class="product-info">
-                    <p><span class="info-label">Weight:</span> ${product.weight}</p>
-                    <p><span class="info-label">Approximate Price:</span> <span >${product.approximate_price}</span></p>
-                </div>
-               
-            </div>
-        </div>
+      (category) => `
+        <a href="${category.page}" class="category-card">
+          <img src="${category.thumbnail}" alt="${category.name}" class="category-image">
+          <div class="category-info">
+            <h3 class="category-name">${category.name}</h3>
+            <p class="category-description">${category.description}</p>
+          </div>
+        </a>
     `
     )
     .join("");
-
-  // Add event listeners to all view buttons
-  document.querySelectorAll(".view-larger-btn").forEach((button) => {
-    button.addEventListener("click", function () {
-      const productData = JSON.parse(this.getAttribute("data-product"));
-      openModalWithProduct(productData, 0);
-    });
-  });
-
-  // Add event listeners to show more buttons
-  document.querySelectorAll(".show-more-btn").forEach((button) => {
-    button.addEventListener("click", function () {
-      const productData = JSON.parse(this.getAttribute("data-product"));
-      openModalWithProduct(productData, 1); // Start from first additional image
-    });
-  });
 }
 
-// Open modal with product images
-function openModalWithProduct(product, startIndex = 0) {
-  currentProduct = product;
-  currentImageIndex = startIndex;
-  currentImages = [product.image, ...(product.additionalImages || [])];
-  
-  updateModalImage();
-  imageModal.classList.add("active");
-  document.body.style.overflow = "hidden";
-}
-
-// Update modal image and controls
-function updateModalImage() {
-  modalImage.src = currentImages[currentImageIndex];
-  imageCounter.textContent = `${currentImageIndex + 1} / ${currentImages.length}`;
-  
-  // Update button states
-  prevBtn.disabled = currentImageIndex === 0;
-  nextBtn.disabled = currentImageIndex === currentImages.length - 1;
-  
-  // Update thumbnails
-  updateThumbnails();
-}
-
-// Update thumbnail navigation
-function updateThumbnails() {
-  thumbnailContainer.innerHTML = currentImages
-    .map((image, index) => `
-      <div class="thumbnail ${index === currentImageIndex ? 'active' : ''}" 
-           data-index="${index}">
-        <img src="${image}" alt="Thumbnail ${index + 1}">
-      </div>
-    `)
-    .join('');
-  
-  // Add thumbnail click events
-  document.querySelectorAll('.thumbnail').forEach(thumb => {
-    thumb.addEventListener('click', function() {
-      currentImageIndex = parseInt(this.getAttribute('data-index'));
-      updateModalImage();
-    });
-  });
-}
-
-// Navigation functions
-function nextImage() {
-  if (currentImageIndex < currentImages.length - 1) {
-    currentImageIndex++;
-    updateModalImage();
-  }
-}
-
-function prevImage() {
-  if (currentImageIndex > 0) {
-    currentImageIndex--;
-    updateModalImage();
-  }
-}
-
-function closeModal() {
-  imageModal.classList.remove("active");
-  document.body.style.overflow = "auto";
-  currentProduct = null;
-  currentImageIndex = 0;
-  currentImages = [];
-}
-
-// Event listeners
-closeModalBtn.addEventListener("click", closeModal);
-prevBtn.addEventListener("click", prevImage);
-nextBtn.addEventListener("click", nextImage);
-
-imageModal.addEventListener("click", function (e) {
-  if (e.target === imageModal) {
-    closeModal();
+// Initialize main page
+document.addEventListener("DOMContentLoaded", function() {
+  if (categoriesGrid) {
+    renderCategories();
   }
 });
-
-// Keyboard navigation
-document.addEventListener("keydown", function (e) {
-  if (imageModal.classList.contains("active")) {
-    if (e.key === "ArrowLeft") prevImage();
-    if (e.key === "ArrowRight") nextImage();
-    if (e.key === "Escape") closeModal();
-  }
-});
-
-// Initialize
-document.addEventListener("DOMContentLoaded", renderProducts);

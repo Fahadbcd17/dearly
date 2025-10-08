@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Bags Collection - Dearly</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Back Button -->
+    <div class="back-container">
+      <button class="back-btn" onclick="goBack()">
+        <svg xmlns="http://www.w3.org/2000/svg" class="back-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+        </svg>
+        Back to Categories
+      </button>
+    </div>
+
+    <div class="container py-8">
+      <header class="category-header">
+        <h1>Bags Collection</h1>
+        <p>Premium quality bags for every occasion</p>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSdvokMQgVONQch25zDgRLtg0FIwKd3LppDwQ1hAl2ypcC9k0Q/viewform?usp=header" target="_blank">Please take the short survey</a>
+      </header>
+
+      <div class="product-grid" id="productGrid">
+        <!-- Product cards will be inserted here by JavaScript -->
+      </div>
+    </div>
+
+    <!-- Image Modal -->
+    <div class="modal-overlay" id="imageModal">
+      <div class="modal-content">
+        <button title="btn" class="close-modal-btn" id="closeModalBtn">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="close-icon"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+        
+        <div class="modal-header">
+          <h3 id="modalTitle">Product Image</h3>
+          <div class="image-counter" id="imageCounter">1 / 1</div>
+        </div>
+        
+        <div class="modal-image-container">
+          <button class="nav-btn prev-btn" id="prevBtn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+            </svg>
+          </button>
+          
+          <img id="modalImage" class="modal-image" alt="Enlarged product view" />
+          
+          <button class="nav-btn next-btn" id="nextBtn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </button>
+        </div>
+        
+        <div class="thumbnail-container" id="thumbnailContainer">
+          <!-- Thumbnails will be inserted here -->
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function goBack() {
+        window.location.href = 'index.html';
+      }
+    </script>
+    <script src="bags.js"></script>
+  </body>
+</html>

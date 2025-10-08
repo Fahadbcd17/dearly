@@ -4,6 +4,7 @@ body {
     margin: 0;
     padding: 0;
     line-height: 1.6;
+    background: #f8f9fa;
 }
 
 .container {
@@ -17,9 +18,123 @@ body {
     padding-bottom: 2rem;
 }
 
-h1 {
+/* Header Styles */
+.page-header {
     text-align: center;
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
+}
+
+.page-header h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.page-header p {
+    font-size: 1.2rem;
+    color: #666;
+}
+
+.category-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.category-header h1 {
+    font-size: 2.2rem;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.category-header p {
+    font-size: 1.1rem;
+    color: #666;
+}
+
+/* Categories Grid */
+.categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    padding: 1rem 0;
+}
+
+.category-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.category-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+}
+
+.category-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-bottom: 3px solid #4285F4;
+}
+
+.category-info {
+    padding: 1.5rem;
+    text-align: center;
+}
+
+.category-name {
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.category-description {
+    color: #666;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* Back Button */
+.back-container {
+    background: white;
+    padding: 1rem 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.back-btn {
+    display: inline-flex;
+    align-items: center;
+    background: #4285F4;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    margin-left: 5%;
+}
+
+.back-btn:hover {
+    background: #3367D6;
+    transform: translateX(-5px);
+}
+
+.back-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
 }
 
 /* Product Grid */
@@ -30,21 +145,22 @@ h1 {
 }
 
 .product-card {
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    background: white;
+    border-radius: 12px;
     overflow: hidden;
-    transition: transform 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
 }
 
 .product-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
 }
 
 .product-image-container {
     position: relative;
     overflow: hidden;
-    height: 200px;
+    height: 250px;
 }
 
 .product-image {
@@ -62,47 +178,52 @@ h1 {
     position: absolute;
     bottom: 10px;
     right: 10px;
-    background: rgba(0,0,0,0.7);
+    background: rgba(0,0,0,0.8);
     color: white;
     border: none;
-    padding: 8px 12px;
-    border-radius: 4px;
+    padding: 10px 15px;
+    border-radius: 6px;
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: all 0.3s ease;
     z-index: 2;
+    font-weight: 500;
 }
 
 .view-larger-btn:hover {
     background: rgba(0,0,0,0.9);
+    transform: scale(1.05);
 }
 
 .show-more-btn {
     position: absolute;
     bottom: 10px;
     left: 10px;
-    background: rgba(255,255,255,0.9);
+    background: rgba(255,255,255,0.95);
     color: #333;
     border: none;
-    padding: 6px 10px;
-    border-radius: 4px;
+    padding: 8px 12px;
+    border-radius: 6px;
     cursor: pointer;
     transition: all 0.3s ease;
     z-index: 2;
     font-size: 0.9rem;
+    font-weight: 500;
 }
 
 .show-more-btn:hover {
-    background: rgba(255,255,255,1);
-    transform: translateY(-1px);
+    background: white;
+    transform: translateY(-2px);
 }
 
 .product-details {
-    padding: 1rem;
+    padding: 1.5rem;
 }
 
 .product-title {
     margin-top: 0;
-    font-size: 1.2rem;
+    font-size: 1.3rem;
+    color: #333;
+    margin-bottom: 1rem;
 }
 
 .product-info {
@@ -111,29 +232,13 @@ h1 {
 
 .info-label {
     font-weight: bold;
+    color: #555;
     margin-right: 5px;
 }
 
-.drive-btn {
-    display: inline-flex;
-    align-items: center;
-    background: #4285F4;
-    color: white;
-    padding: 8px 12px;
-    border-radius: 4px;
-    text-decoration: none;
-    transition: background 0.3s ease;
-}
-
-.drive-btn:hover {
-    background: #3367D6;
-}
-
-.drive-icon {
-    width: 20px;
-    height: 20px;
-    fill: white;
-    margin-right: 8px;
+.price-green {
+    color: #28a745;
+    font-weight: bold;
 }
 
 /* Modal Styles */
@@ -308,35 +413,25 @@ h1 {
     height: 20px;
 }
 
-.modern-button {
-  background-color: #4CAF50;
-  border: none;
-  color: white;
-  padding: 12px 24px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
-  border-radius: 8px;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.modern-button:hover {
-  background-color: #45a049;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-}
-
-.modern-button:active {
-  transform: translateY(0);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
 /* Responsive Design */
 @media (max-width: 768px) {
+    .categories-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .page-header h1 {
+        font-size: 2rem;
+    }
+    
+    .category-header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+    
     .modal-content {
         max-width: 98%;
         max-height: 98%;
@@ -364,58 +459,9 @@ h1 {
         width: 50px;
         height: 50px;
     }
+    
+    .back-btn {
+        margin-left: 2%;
+        padding: 10px 20px;
+    }
 }
-
-.price-green {
-    color: #28a745;
-    font-weight: bold;
-}
-
-
-
-
-
-.drive-btn {
-            display: inline-flex;
-            align-items: center;
-            padding: 10px 20px;
-            margin: 10px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-family: Arial, sans-serif;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-        }
-        
-        .drive-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-        }
-        
-        .drive-icon {
-            width: 20px;
-            height: 20px;
-            margin-right: 8px;
-        }
-        
-        /* Facebook Button Styling */
-        .facebook-btn {
-            background-color: #1877F2;
-            color: white;
-        }
-        
-        .facebook-btn:hover {
-            background-color: #166FE5;
-        }
-        
-        /* Instagram Button Styling */
-        .instagram-btn {
-            color: white;
-            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-        }
-        
-        .instagram-btn:hover {
-            background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-            filter: brightness(1.1);
-        }

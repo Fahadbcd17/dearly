@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dearly</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container py-8">
+      <h1>Product Review</h1>
+      <!-- <a class="modern-button" href="./selected.html">Selected</a> -->
+
+      <div class="product-grid" id="productGrid">
+        <!-- Product cards will be inserted here by JavaScript -->
+      </div>
+    </div>
+
+    <!-- Image Modal -->
+    <div class="modal-overlay" id="imageModal">
+      <div class="modal-content">
+        <button title="btn" class="close-modal-btn" id="closeModalBtn">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="close-icon"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+        
+        <div class="modal-header">
+          <h3 id="modalTitle">Product Image</h3>
+          <div class="image-counter" id="imageCounter">1 / 1</div>
+        </div>
+        
+        <div class="modal-image-container">
+          <button class="nav-btn prev-btn" id="prevBtn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/>
+            </svg>
+          </button>
+          
+          <img id="modalImage" class="modal-image" alt="Enlarged product view" />
+          
+          <button class="nav-btn next-btn" id="nextBtn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+            </svg>
+          </button>
+        </div>
+        
+        <div class="thumbnail-container" id="thumbnailContainer">
+          <!-- Thumbnails will be inserted here -->
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

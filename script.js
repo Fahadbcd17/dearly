@@ -5,14 +5,13 @@ const categories = [
     description: "Premium quality bags for every occasion",
     thumbnail: "./assets/back-pack-1/back-pack-1(1).jpg",
     page: "bags.html"
-  }
-  // Add more categories here in the future:
-  // {
-  //   name: "Shoes",
-  //   description: "Comfortable and stylish footwear",
-  //   thumbnail: "./assets/categories/shoes-thumbnail.jpg",
-  //   page: "shoes.html"
-  // },
+  },
+  {
+    name: "Bottle",
+    description: "Premium quality bottle",
+    thumbnail: "./assets/bottle-2/bottle-2(1).jpg",
+    page: "bottle.html"
+  },
   // {
   //   name: "Accessories",
   //   description: "Complete your look with our accessories",
